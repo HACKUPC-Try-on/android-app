@@ -1,0 +1,86 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+
+        compile_sdk = 34
+        min_sdk = 28
+        target_sdk = 34
+        kotlin_version = "1.9.20"
+        java_Version = JavaVersion.VERSION_17
+
+        compose_compiler_version = "1.5.5"
+
+        core_ktx = "1.12.0"
+        app_compat = "1.6.1"
+        coroutines = "1.7.1"
+        coroutines_android = "1.7.1"
+        gradle_plugin = "8.3.0"
+
+        material_design = "1.11.0"
+        material3 = "1.2.1"
+        material3_window_size = "1.2.1"
+        compose_version = "1.6.6"
+        compose_activity = "1.8.2"
+        android_lifecycle = "2.7.0"
+        compose_livedata = "1.6.5"
+        compose_navigation = "2.7.7"
+
+        gson = "2.10.1"
+        jackson = "2.16.0"
+        retrofit = "2.11.0"
+        okhttp = "4.12.0"
+
+        hilt_version = "2.51.1"
+        hilt_utils = "1.2.0"
+
+        test_monitor = "1.6.1"
+        test_junit = "1.1.5"
+    }
+
+    repositories {
+        mavenCentral()
+        google()
+        maven {
+            url = "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        //classpath "com.android.tools.build.gradle:$gradle_plugin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+    }
+}
+
+plugins {
+    id 'org.jetbrains.kotlin.android' version "$kotlin_version" apply false
+    id 'com.android.application' version "$gradle_plugin" apply false
+    id 'com.android.library' version '8.3.0' apply false
+}
+
+subprojects {
+    afterEvaluate {
+        if (project.hasProperty('android')) {
+            android {
+                compileSdkVersion(compile_sdk)
+
+                defaultConfig {
+                    minSdkVersion(min_sdk)
+                    targetSdkVersion(target_sdk)
+                }
+
+                compileOptions {
+                    sourceCompatibility java_Version
+                    targetCompatibility java_Version
+                }
+
+                kotlinOptions {
+                    jvmTarget = 17
+                }
+                buildFeatures {
+                    buildConfig = true
+                }
+            }
+        }
+    }
+}
