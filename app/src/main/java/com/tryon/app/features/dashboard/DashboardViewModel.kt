@@ -2,35 +2,82 @@ package com.tryon.app.features.dashboard
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.tryon.app.features.dashboard.domain.ClothingCategories
 import com.tryon.app.features.dashboard.domain.DashboardUseCase
+import com.tryon.app.features.dashboard.domain.RecommendationsDomainModel
+import com.tryon.network.parseResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class TryOnViewModel @Inject constructor(
-    val dashboardUseCase: DashboardUseCase
+    private val dashboardUseCase: DashboardUseCase
 ): ViewModel() {
-    private val _viewState: MutableStateFlow<TryOnStateView> = MutableStateFlow(
-        TryOnStateView.Initial
-    )
 
-    val viewState: StateFlow<TryOnStateView> get() = _viewState
+    private val _dashboardViewState: MutableStateFlow<DashboardViewState> = MutableStateFlow(
+        DashboardViewState.Initial
+    )
+    val dashboardViewState: StateFlow<DashboardViewState> get() = _dashboardViewState
+
+    private val _recommendationsViewState: MutableStateFlow<RecommendationsViewState> = MutableStateFlow(
+        RecommendationsViewState.Initial
+    )
+    val recommendationsViewState: StateFlow<RecommendationsViewState> get() = _recommendationsViewState
 
     fun createImageFile() {
-        _viewState.value = TryOnStateView.Active(
-            form = viewState.value.form.copy(
+        _dashboardViewState.value = DashboardViewState.Active(
+            form = dashboardViewState.value.form.copy(
                 fileUri = dashboardUseCase.createImageFile()
             )
         )
     }
 
     fun onImageUploadSuccess(imageUri: Uri) {
-        _viewState.value = TryOnStateView.Active(
-            form = viewState.value.form.copy(
+        _dashboardViewState.value = DashboardViewState.Active(
+            form = dashboardViewState.value.form.copy(
                 imageUri = imageUri
             )
+        )
+        _recommendationsViewState.value = RecommendationsViewState.Loading
+        viewModelScope.launch {
+            dashboardUseCase.getCategoriesFromImage(userImage = imageUri).parseResult(
+                dataSuccess = ::onGetRecommendationsSuccess,
+                dataError = ::onGetRecommendationsError
+            )
+        }
+    }
+
+    fun getClothesFromCategory(category: ClothingCategories) {
+        dashboardViewState.value.form.imageUri?.let {
+            _recommendationsViewState.value = RecommendationsViewState.Loading
+            viewModelScope.launch {
+                dashboardUseCase.getClothesForCategory(
+                    userImage = it,
+                    category = category.id
+                ).parseResult(
+                    dataSuccess = ::onGetRecommendationsSuccess,
+                    dataError = ::onGetRecommendationsError
+                )
+            }
+        }
+    }
+
+    private fun onGetRecommendationsSuccess(recommendations: RecommendationsDomainModel) {
+        _recommendationsViewState.value = RecommendationsViewState.Active(
+            form = recommendationsViewState.value.form.copy(
+                recommendations = recommendations
+            )
+        )
+    }
+
+    private fun onGetRecommendationsError(error: Throwable) {
+        _dashboardViewState.value = DashboardViewState.Error(
+            e = "Couldn't fetch recommendations from server",
+            form = dashboardViewState.value.form
         )
     }
 
@@ -39,26 +86,46 @@ class TryOnViewModel @Inject constructor(
     }
 
     fun setToInitialState() {
-        _viewState.value = TryOnStateView.Initial
+        _dashboardViewState.value = DashboardViewState.Initial
     }
-
 }
 
-data class TryOnFormState(
+data class DashboardFormState(
     val fileUri: Uri? = null,
     val imageUri: Uri? = null
 )
-sealed class TryOnStateView(
-    val form: TryOnFormState = TryOnFormState()
+
+sealed class DashboardViewState(
+    val form: DashboardFormState = DashboardFormState()
 ) {
-    data object Initial: TryOnStateView(form = TryOnFormState())
+    data object Initial: DashboardViewState(form = DashboardFormState())
 
     class Active(
-        form: TryOnFormState
-    ) : TryOnStateView(form = form)
+        form: DashboardFormState
+    ) : DashboardViewState(form = form)
 
     class Error(
-        form: TryOnFormState,
+        form: DashboardFormState,
         val e: String? = null
-    ): TryOnStateView(form = form)
+    ): DashboardViewState(form = form)
+}
+
+data class RecommendationsFormState(
+    val recommendations: RecommendationsDomainModel = RecommendationsDomainModel()
+)
+
+sealed class RecommendationsViewState(
+    val form: RecommendationsFormState = RecommendationsFormState()
+) {
+    data object Initial : RecommendationsViewState()
+    data object Loading : RecommendationsViewState()
+
+    class Active(
+        form: RecommendationsFormState
+    ): RecommendationsViewState(form = form)
+
+    class Error(
+        e: String? = null,
+        form: RecommendationsFormState
+    ): RecommendationsViewState(form = form)
 }

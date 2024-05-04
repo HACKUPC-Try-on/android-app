@@ -3,6 +3,7 @@ package com.tryon.app.features.dashboard.ui
 import android.Manifest
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
@@ -31,6 +32,7 @@ fun GalleryLauncherComponent(
         rememberLauncherForActivityResult(
             contract = ActivityResultContracts.GetContent(),
         ) { imageUri ->
+            Log.d("GalleryLauncher: ", "$imageUri")
             imageUri?.let {
                 onSuccessGallery(it)
             } ?: onErrorGallery("Gallery image not loaded")

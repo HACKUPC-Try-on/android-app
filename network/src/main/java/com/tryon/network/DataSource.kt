@@ -34,3 +34,20 @@ sealed class DataResponse<out T> {
     data class Success<out T>(val data: T): DataResponse<T>()
     data class Failure(val error: Throwable): DataResponse<Nothing>()
 }
+
+fun<T> DataResponse<T>.parseResult(
+    dataSuccess: (T) -> Unit,
+    dataError: (Throwable) -> Unit
+) {
+    when(this) {
+        is DataResponse.Success -> dataSuccess(data)
+        is DataResponse.Failure -> dataError(error)
+    }
+}
+
+suspend fun <T, D> DataResponse<T>.map(
+    newResponse: suspend (T) -> DataResponse<D>
+): DataResponse<D> = when(this) {
+        is DataResponse.Success -> newResponse(data)
+        is DataResponse.Failure -> this
+    }

@@ -19,6 +19,8 @@ fun CameraLauncherComponent(
     onFailure: (String) -> Unit
 ) {
 
+
+
     val cameraPermissionState = rememberPermissionState(
         permission = Manifest.permission.CAMERA
     )
