@@ -4,6 +4,7 @@ import androidx.compose.ui.unit.dp
 
 class Spacing {
     val zero = 0.dp
+    val XS = 8.dp
     val S = 16.dp
     val M = 24.dp
     val L = 40.dp
@@ -15,7 +16,7 @@ class CornerRadius {
 }
 
 class Borders {
-    val iconButton = 4.dp
+    val iconButton = 2.dp
 }
 
 class Dimen(
