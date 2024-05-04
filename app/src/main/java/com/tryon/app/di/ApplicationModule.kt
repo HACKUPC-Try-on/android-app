@@ -16,7 +16,6 @@ import javax.inject.Singleton
 object ApplicationModule {
 
     @Provides
-    @Singleton
     fun provideNetworkClient(): NetworkClient = RetrofitNetworkClient(
         NetworkConfig(
             environment = Environment(
