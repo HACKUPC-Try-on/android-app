@@ -3,23 +3,29 @@ package com.tryon.theme
 import androidx.compose.ui.unit.dp
 
 class Spacing {
-    val Zero = 0.dp
+    val zero = 0.dp
     val S = 16.dp
     val M = 24.dp
     val L = 40.dp
 }
 
 class CornerRadius {
-    val Card = 16.dp
-    val Button = 8.dp
+    val card = 16.dp
+    val button = 8.dp
+}
+
+class Borders {
+    val iconButton = 4.dp
 }
 
 class Dimen(
-    Spacing: Spacing,
-    CornerRadius: CornerRadius
+    val Spacing: Spacing,
+    val CornerRadius: CornerRadius,
+    val Borders: Borders
 )
 
 fun dimen() = Dimen(
     Spacing = Spacing(),
-    CornerRadius = CornerRadius()
+    CornerRadius = CornerRadius(),
+    Borders = Borders()
 )
