@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.tryon.network'
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+
+        }
+        release {
+            minifyEnabled true
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android"
+    implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "androidx.appcompat:appcompat:$app_compat"
+
+    implementation "com.google.code.gson:gson:$gson"
+
+    api "com.squareup.retrofit2:retrofit:$retrofit"
+    api "com.squareup.retrofit2:converter-gson:$retrofit"
+    api "com.squareup.okhttp3:okhttp:$okhttp"
+    api "com.squareup.okhttp3:okhttp-urlconnection:$okhttp"
+
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_utils"
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_utils"
+}
