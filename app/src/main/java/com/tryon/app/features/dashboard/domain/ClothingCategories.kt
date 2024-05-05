@@ -5,13 +5,13 @@ import com.tryon.app.R
 
 sealed class ClothingCategories(
     val id: String,
-    @DrawableRes iconRes: Int
+    @DrawableRes val iconRes: Int
 ) {
-    class Shirt : ClothingCategories(id = SHIRT_CODE, R.drawable.ic_portrait)
-    class Pants : ClothingCategories(id = PANTS_CODE, R.drawable.ic_portrait)
-    class Bag : ClothingCategories(id = BAG_CODE, R.drawable.ic_portrait)
-    class Shoes : ClothingCategories(id = SHOES_CODE, R.drawable.ic_portrait)
-    class Sweater : ClothingCategories(id = SWEATER_CODE, R.drawable.ic_portrait)
+    class Shirt : ClothingCategories(id = SHIRT_CODE, R.drawable.ic_shirt)
+    class Pants : ClothingCategories(id = PANTS_CODE, R.drawable.ic_pants)
+    class Bag : ClothingCategories(id = BAG_CODE, R.drawable.ic_bag)
+    class Shoes : ClothingCategories(id = SHOES_CODE, R.drawable.ic_shoes)
+    class Sweater : ClothingCategories(id = SWEATER_CODE, R.drawable.ic_sweater)
 
     companion object {
         const val SHIRT_CODE = "shirt"

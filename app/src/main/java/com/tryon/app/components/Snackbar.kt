@@ -42,7 +42,7 @@ fun ShowSnackBar(
         {
             Text(
                 modifier = Modifier
-                    .padding(TryOnTheme.Dimen.Spacing.XS)
+                    .padding(TryOnTheme.Dimen.spacing.XS)
                     .fillMaxWidth()
                     .padding(vertical = 30.dp)
                     .graphicsLayer {
@@ -52,8 +52,8 @@ fun ShowSnackBar(
                     .padding(vertical = 10.dp)
                     .align(Alignment.BottomCenter),
                 text = message,
-                color = TryOnTheme.Colors.secondary,
-                style = TryOnTheme.Typography.body,
+                color = TryOnTheme.Colors.accent,
+                style = TryOnTheme.Typography.subhead,
                 textAlign = TextAlign.Center
             )
         }

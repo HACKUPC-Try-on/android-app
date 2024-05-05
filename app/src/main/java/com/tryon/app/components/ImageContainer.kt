@@ -1,9 +1,6 @@
 package com.tryon.app.components
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,8 +9,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,7 +17,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.tryon.app.R
 import com.tryon.theme.TryOnTheme
@@ -30,21 +24,10 @@ import com.tryon.theme.TryOnTheme
 @Composable
 fun ImageContainer(
     modifier: Modifier = Modifier,
-    image: Uri? = null
+    image: Bitmap? = null
 ) {
-
-    val bitmap =  remember {
-        mutableStateOf<Bitmap?>(null)
-    }
-
-    image?.let {
-        val source = ImageDecoder
-            .createSource(LocalContext.current.contentResolver,it)
-        bitmap.value = ImageDecoder.decodeBitmap(source)
-    }
-
     val borderColor = TryOnTheme.Colors.highlight
-    val cornerWidth = TryOnTheme.Dimen.CornerRadius.card
+    val cornerWidth = TryOnTheme.Dimen.cornerRadius.card
     Box(
         modifier = modifier
             .drawBehind {
@@ -57,7 +40,7 @@ fun ImageContainer(
             .clip(shape = RoundedCornerShape(cornerWidth)),
         contentAlignment = Alignment.Center
     ) {
-        bitmap.value?.let {
+        image?.let {
             Image(bitmap = it.asImageBitmap(), contentDescription = null)
         } ?: EmptyImageComponent()
     }
@@ -67,12 +50,13 @@ fun ImageContainer(
 fun EmptyImageComponent() {
     Box(
         modifier = Modifier
+            .padding(all = TryOnTheme.Dimen.spacing.M)
             .background(
                 color = TryOnTheme.Colors.tertiary,
                 shape = CircleShape
             )
             .padding(
-                all = TryOnTheme.Dimen.Spacing.M
+                all = TryOnTheme.Dimen.spacing.M
             )
     ) {
         Icon(
@@ -86,4 +70,3 @@ val stroke = Stroke(
     width = 8f,
     pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
 )
-

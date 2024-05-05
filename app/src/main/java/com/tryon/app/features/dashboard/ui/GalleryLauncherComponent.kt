@@ -16,7 +16,7 @@ import com.tryon.app.components.ButtonIcon
 @Composable
 fun GalleryLauncherComponent(
     onSuccessGallery: (Uri) -> Unit,
-    onErrorGallery: (String) -> Unit
+    isEnabled: Boolean = true
 ) {
 
     val mediaPermissionState = rememberMultiplePermissionsState(
@@ -35,12 +35,12 @@ fun GalleryLauncherComponent(
             Log.d("GalleryLauncher: ", "$imageUri")
             imageUri?.let {
                 onSuccessGallery(it)
-            } ?: onErrorGallery("Gallery image not loaded")
+            }
         }
 
     val hasMediaPermission = mediaPermissionState.allPermissionsGranted
 
-    ButtonIcon(iconRes = R.drawable.ic_portrait, onClick = {
+    ButtonIcon(iconRes = R.drawable.ic_portrait, isEnabled = isEnabled, onClick = {
         if (hasMediaPermission) {
             galleryLauncher.launch("image/*")
         } else {

@@ -1,5 +1,6 @@
 package com.tryon.app.features.dashboard
 
+import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TryOnViewModel @Inject constructor(
-    private val dashboardUseCase: DashboardUseCase
+    private val dashboardUseCase: DashboardUseCase,
+    private val fileManager: FileManager
 ) : ViewModel() {
 
     private val _dashboardViewState: MutableStateFlow<DashboardViewState> = MutableStateFlow(
@@ -41,7 +43,8 @@ class TryOnViewModel @Inject constructor(
     fun onImageUploadSuccess(imageUri: Uri) {
         _dashboardViewState.value = DashboardViewState.Active(
             form = dashboardViewState.value.form.copy(
-                imageUri = imageUri
+                imageUri = imageUri,
+                imageBitmap = fileManager.uriToBitmap(imageUri)
             )
         )
         _recommendationsViewState.value = RecommendationsViewState.Loading
@@ -108,13 +111,6 @@ class TryOnViewModel @Inject constructor(
         )
     }
 
-    fun onImageUploadError(e: String) {
-        _dashboardViewState.value = DashboardViewState.Error(
-            message = "Failed to load image",
-            form = dashboardViewState.value.form
-        )
-    }
-
     fun setToInitialState() {
         _dashboardViewState.value = DashboardViewState.Initial
         _recommendationsViewState.value = RecommendationsViewState.Initial
@@ -123,7 +119,8 @@ class TryOnViewModel @Inject constructor(
 
 data class DashboardFormState(
     val fileUri: Uri? = null,
-    val imageUri: Uri? = null
+    val imageUri: Uri? = null,
+    val imageBitmap: Bitmap? = null
 )
 
 sealed class DashboardViewState(

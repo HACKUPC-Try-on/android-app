@@ -16,7 +16,7 @@ import com.tryon.app.components.ButtonIcon
 fun CameraLauncherComponent(
     uri: Uri,
     onSuccessCamera: (Uri) -> Unit,
-    onFailure: (String) -> Unit
+    isEnabled: Boolean = true
 ) {
 
     val cameraPermissionState = rememberPermissionState(
@@ -29,7 +29,6 @@ fun CameraLauncherComponent(
         contract = ActivityResultContracts.TakePicture(),
         onResult = { success ->
             if (success) onSuccessCamera(uri)
-            else onFailure("Failed to load camera image, try again please")
         }
     )
 

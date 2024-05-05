@@ -17,19 +17,20 @@ import com.tryon.theme.TryOnTheme
 @Composable
 fun ButtonIcon(
     modifier: Modifier = Modifier,
+    isEnabled: Boolean = true,
     @DrawableRes iconRes: Int,
     onClick: () -> Unit
 ) {
     Box(
         modifier = modifier
             .border(
-                width = TryOnTheme.Dimen.Borders.iconButton,
+                width = TryOnTheme.Dimen.borders.iconButton,
                 shape = CircleShape,
                 color = TryOnTheme.Colors.tertiary
             )
             .clip(shape = CircleShape)
-            .clickable(role = Role.Button, onClick = onClick)
-            .padding(all = TryOnTheme.Dimen.Spacing.S)
+            .clickable(role = Role.Button, onClick = onClick, enabled = isEnabled)
+            .padding(all = TryOnTheme.Dimen.spacing.S)
     ) {
         Icon(
             painter = painterResource(id = iconRes),
