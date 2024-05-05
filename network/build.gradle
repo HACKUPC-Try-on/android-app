@@ -32,6 +32,7 @@ dependencies {
     api "com.squareup.retrofit2:converter-gson:$retrofit"
     api "com.squareup.okhttp3:okhttp:$okhttp"
     api "com.squareup.okhttp3:okhttp-urlconnection:$okhttp"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"

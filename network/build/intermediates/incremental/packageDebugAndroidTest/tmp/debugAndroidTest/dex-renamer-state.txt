@@ -1,4 +1,4 @@
-#Sat May 04 01:56:22 CEST 2024
+#Sat May 04 23:00:13 CEST 2024
 base.0=/home/robi/workspace/TryOn/network/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
 base.1=/home/robi/workspace/TryOn/network/build/intermediates/dex/debugAndroidTest/mergeLibDexDebugAndroidTest/8/classes.dex
 base.2=/home/robi/workspace/TryOn/network/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex

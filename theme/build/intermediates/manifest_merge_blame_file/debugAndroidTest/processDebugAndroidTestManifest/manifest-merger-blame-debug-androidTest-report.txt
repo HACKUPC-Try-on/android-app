@@ -3,24 +3,24 @@
 3    package="com.tryon.theme.test" >
 4
 5    <uses-sdk
-5-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:5:5-74
+5-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:5:5-74
 6        android:minSdkVersion="28"
-6-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:5:15-41
+6-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:5:15-41
 7        android:targetSdkVersion="34" />
-7-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:5:42-71
+7-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:5:42-71
 8
 9    <instrumentation
-9-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:11:5-15:70
+9-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:11:5-15:70
 10        android:name="android.test.InstrumentationTestRunner"
-10-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:11:22-75
+10-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:11:22-75
 11        android:functionalTest="false"
-11-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:14:22-52
+11-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:14:22-52
 12        android:handleProfiling="false"
-12-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:13:22-53
+12-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:13:22-53
 13        android:label="Tests for com.tryon.theme.test"
-13-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:15:22-68
+13-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:15:22-68
 14        android:targetPackage="com.tryon.theme.test" />
-14-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:12:22-66
+14-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:12:22-66
 15
 16    <permission
 16-->[androidx.core:core:1.12.0] /home/robi/.gradle/caches/transforms-3/7291c62325e23562adcfe0c0cbf71919/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
@@ -34,14 +34,14 @@
 20-->[androidx.core:core:1.12.0] /home/robi/.gradle/caches/transforms-3/7291c62325e23562adcfe0c0cbf71919/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
 21
 22    <application
-22-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:7:5-9:19
+22-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:7:5-9:19
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 23-->[androidx.core:core:1.12.0] /home/robi/.gradle/caches/transforms-3/7291c62325e23562adcfe0c0cbf71919/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 24        android:debuggable="true"
 25        android:extractNativeLibs="false" >
 26        <uses-library android:name="android.test.runner" />
-26-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:8:9-60
-26-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12031969450806813732.xml:8:23-57
+26-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:8:9-60
+26-->/home/robi/workspace/TryOn/theme/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest4600626856341598029.xml:8:23-57
 27
 28        <provider
 28-->[androidx.emoji2:emoji2:1.3.0] /home/robi/.gradle/caches/transforms-3/62d18871e3a54ff5f73e76f0d02bd6eb/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20

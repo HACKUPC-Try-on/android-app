@@ -6,6 +6,7 @@ class Spacing {
     val zero = 0.dp
     val XS = 8.dp
     val S = 16.dp
+    val SM = 20.dp
     val M = 24.dp
     val L = 40.dp
 }

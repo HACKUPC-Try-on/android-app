@@ -1,6 +1,8 @@
 package com.tryon.app.features.dashboard.data
 
+import android.content.Context
 import android.net.Uri
+import com.tryon.app.features.dashboard.toMultipart
 import com.tryon.network.DataResponse
 import com.tryon.network.DataSource
 import com.tryon.network.Mapper
@@ -22,12 +24,13 @@ class GetClothesIDsDataSourceImpl(
 
 class GetClothesIDsPredicate(
     private val imageUri: Uri,
-    private val category: String
+    private val category: String,
+    private val context: Context
 ) : Predicate<TryonApi, List<String>, List<String>> {
     override fun service(): Class<TryonApi> = TryonApi::class.java
 
     override fun endpoint(): suspend (TryonApi) -> List<String> = {
-        it.getClothesIDs(image = imageUri.toMultipart(), category = category)
+        it.getClothesIDs(image = imageUri.toMultipart(context = context, "image"), category = category)
     }
 
     override fun mapper(): Mapper<List<String>, List<String>> = ClothesMapper()

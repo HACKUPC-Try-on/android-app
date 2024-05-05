@@ -27,7 +27,7 @@ sealed class ClothingCategories(
                 BAG_CODE -> Bag()
                 SHOES_CODE -> Shoes()
                 SWEATER_CODE -> Sweater()
-                else -> throw Exception(message = "Category not recognized")
+                else -> throw Throwable(message = "Category not recognized")
             }
     }
 }

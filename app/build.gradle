@@ -37,13 +37,13 @@ android {
 
         dev {
             dimension "flavorDimension"
-            buildConfigField "String", "API_HOST", "\"www.apihost.com\""
+            buildConfigField "String", "API_HOST", "\"http://34.69.231.130:8000/\""
             buildConfigField "int", "API_TIMEOUT", "30"
             buildConfigField "Boolean", "FORCE_HTTPS", "false"
         }
         prod {
             dimension "flavorDimension"
-            buildConfigField "String", "API_HOST", "\"www.apihost.com\""
+            buildConfigField "String", "API_HOST", "\"http://34.69.231.130:8000/\""
             buildConfigField "int", "API_TIMEOUT", "30"
             buildConfigField "Boolean", "FORCE_HTTPS", "false"
         }

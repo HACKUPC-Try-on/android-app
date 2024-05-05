@@ -1,6 +1,7 @@
 package com.tryon.app.components
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.net.Uri
 import androidx.compose.foundation.Image
